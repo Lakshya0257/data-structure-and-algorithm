@@ -1,0 +1,1 @@
+D:\JetBrains(Rust)\Project\Array\SumOfAbsoluteDifferencesInSortedArray\target\debug\SumOfAbsoluteDifferencesInSortedArray.exe: D:\JetBrains(Rust)\Project\Array\SumOfAbsoluteDifferencesInSortedArray\src\main.rs
