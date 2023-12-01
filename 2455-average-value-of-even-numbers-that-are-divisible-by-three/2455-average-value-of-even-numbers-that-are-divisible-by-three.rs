@@ -1,16 +1,22 @@
 impl Solution {
     pub fn average_value(nums: Vec<i32>) -> i32 {
-        let mut sum = 0;
-        let mut count = 0;
-        for x in nums {
-            if x & 1 == 0 && x%3 == 0 {
-                sum+=x;
-                count+=1;
+
+
+        let mut count: i32 = 0;
+        let mut total: i32 = 0;
+
+        for n in nums.iter(){
+            if n % 3 == 0 && n % 2 == 0 {
+                count +=1;
+                total +=n;
             }
         }
-        if sum==0 {
-            return 0;
+        
+        if count > 0 {
+            return total / count;
         }
-        sum/count
+        
+        0
+        
     }
 }
