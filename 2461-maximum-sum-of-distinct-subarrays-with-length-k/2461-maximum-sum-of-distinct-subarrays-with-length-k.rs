@@ -1,32 +1,16 @@
-use::std::collections::HashMap;
 impl Solution {
     pub fn maximum_subarray_sum(nums: Vec<i32>, k: i32) -> i64 {
-        let mut left = 0;
-        let mut right = 0;
-        let mut map = HashMap::new();
-        let mut sum: i64 = 0;
-        let mut curSum :i64 = 0;
-        while right<nums.len() {
-            if (right-left) > (k-1) as usize {
-                map.remove(&nums[left]);
-                curSum-=nums[left] as i64;
-                left+=1;
-            }
-            if !map.contains_key(&nums[right]) {
-                map.insert(nums[right],1);
-                curSum+=nums[right] as i64;
-            } else {
-                map.clear();
-                right=left+1;
-                left=right;
-                map.insert(nums[right],1);
-                curSum = nums[right] as i64;
-            }
-            if(right-left) == (k-1) as usize {
-                sum=sum.max(curSum);
-            }
-            right+=1;
+        let (mut res, mut cur, mut dup, k) = (0i64, 0i64, -1i32, k as usize);
+        let mut pos = vec![-1i32; 100001];
+
+        for i in 0..nums.len() {
+            cur += nums[i] as i64;
+            if (i >= k) {cur -= nums[i-k] as i64;}
+            dup = dup.max(pos[nums[i] as usize]);
+            if ((i-k) as i32 >= dup) {res = res.max(cur);}
+            pos[nums[i] as usize] = i as i32;
         }
-        sum
+
+        return res;
     }
 }
